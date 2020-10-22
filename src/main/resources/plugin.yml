@@ -1,0 +1,39 @@
+name: VampireSim
+version: ${project.version}
+main: me.saltyaimbotter.vampiresim.VampireSim
+prefix: VampireSim
+depend: [ Vault ]
+authors: [ SaltyAimbOtter ]
+description: A helper plugin for Arazorias that provides custom effects.
+
+commands:
+  vamps:
+    description: Internal usage.
+
+permissions:
+  demonic.regen:
+    default: false
+  demonic.violence:
+    default: false
+  demonic.vision:
+    default: false
+  demonic.wraith:
+    default: false
+  demonic.immortal:
+    default: false
+  demonic.banquiet:
+    default: false
+  demonic.pain:
+    default: false
+  demonic.indomitable:
+    default: false
+  demonic.unrelenting:
+    default: false
+  demonic.flawless:
+    default: false
+  demonic.supreme:
+    default: false
+  demonic.unbrekable:
+    default: false
+  demonic.sense:
+    default: false
