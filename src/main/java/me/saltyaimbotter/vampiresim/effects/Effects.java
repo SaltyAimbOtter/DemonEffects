@@ -6,23 +6,6 @@ import org.bukkit.potion.PotionEffectType;
 
 public class Effects {
 
-    public enum EFFECT {
-        REGEN,
-        VIOLENCE,
-        VISION,
-        WRAITH,
-        IMMORTAL,
-        BANQUIET,
-        PAIN,
-        INDOMITABLE,
-        UNRELENTING,
-        FLAWLESS,
-        SUPREME,
-        UNBREAKABLE,
-        SENSE
-    }
-
-
     public void applyEffects(Player p, EFFECT effect) {
         switch (effect) {
             case REGEN:
@@ -47,4 +30,21 @@ public class Effects {
         }
 
     }
+
+    public enum EFFECT {
+        REGEN,
+        VIOLENCE,
+        VISION,
+        WRAITH,
+        IMMORTAL,
+        BANQUIET,
+        PAIN,
+        INDOMITABLE,
+        UNRELENTING,
+        FLAWLESS,
+        SUPREME,
+        UNBREAKABLE,
+        SENSE
+    }
 }
+

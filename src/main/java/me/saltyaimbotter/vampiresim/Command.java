@@ -1,5 +1,6 @@
 package me.saltyaimbotter.vampiresim;
 
+import me.saltyaimbotter.vampiresim.effects.Effects;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -22,6 +23,9 @@ public class Command implements CommandExecutor {
             sender.sendMessage("Player " + args[0] + "does not exist.");
             return true;
         }
+
+        Effects.EFFECT effect = Effects.EFFECT.valueOf(args[1]);
+
 
 
     }

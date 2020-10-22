@@ -3,8 +3,11 @@ package me.saltyaimbotter.vampiresim.effects;
 import me.saltyaimbotter.vampiresim.VampireSim;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import java.util.Collection;
 
 public class SimplePotionEffects {
 
@@ -14,6 +17,14 @@ public class SimplePotionEffects {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(VampireSim.getPlugin(), new Runnable() {
             @Override
             public void run() {
+                Collection<PotionEffect> activeEffects = p.getActivePotionEffects();
+                for (PotionEffect activeEffect : activeEffects) {
+                    if (activeEffect.getType().equals(effectType)) {
+                        if (activeEffect.getDuration() > 5) {
+                            return;
+                        }
+                    }
+                }
                 p.addPotionEffect(new PotionEffect(effectType,20,1));
             }
         },0,100);
