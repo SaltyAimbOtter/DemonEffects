@@ -1,57 +1,33 @@
 package me.saltyaimbotter.demonEffects.effects;
 
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffectType;
 
-import static me.saltyaimbotter.demonEffects.DemonEffects.getPerms;
-import static me.saltyaimbotter.demonEffects.effects.SimplePotionEffects.applyEffect;
+import static me.saltyaimbotter.demonEffects.effects.SimplePotionEffects.applyPotionEffect;
 
 public class Effects {
 
     public static int applyEffects(Player p, EFFECT effect) {
-        OfflinePlayer offp = Bukkit.getOfflinePlayer(p.getUniqueId());
         switch (effect) {
             case REGEN:
-                getPerms().playerAdd(null, offp, "demonic.regen");
-                return applyEffect(p, PotionEffectType.REGENERATION);
+                return applyPotionEffect(p, PotionEffectType.REGENERATION);
             case VIOLENCE:
-                getPerms().playerAdd(null, offp, "demonic.violence");
-                return applyEffect(p, PotionEffectType.SPEED);
+                return applyPotionEffect(p, PotionEffectType.SPEED);
             case VISION:
-                getPerms().playerAdd(null, offp,"demonic.vision");
-                return applyEffect(p, PotionEffectType.NIGHT_VISION);
+                return applyPotionEffect(p, PotionEffectType.NIGHT_VISION);
             case WRAITH:
-                getPerms().playerAdd(null, offp, "demonic.wraith");
-                return applyEffect(p, PotionEffectType.INVISIBILITY);
+                return applyPotionEffect(p, PotionEffectType.INVISIBILITY);
             case IMMORTAL:
-                getPerms().playerAdd(null, offp, "demonic.immortal");
-                return applyEffect(p, PotionEffectType.DAMAGE_RESISTANCE);
+                return applyPotionEffect(p, PotionEffectType.DAMAGE_RESISTANCE);
             case BANQUIET:
-                getPerms().playerAdd(null, offp, "demonic.banquiet");
-                return applyEffect(p, PotionEffectType.DAMAGE_RESISTANCE);
             case PAIN:
-                getPerms().playerAdd(null, offp, "demonic.pain");
-                return applyEffect(p, PotionEffectType.DAMAGE_RESISTANCE);
             case INDOMITABLE:
-                getPerms().playerAdd(null, offp, "demonic.indomitable");
-                return applyEffect(p, PotionEffectType.DAMAGE_RESISTANCE);
             case UNRELENTING:
-                getPerms().playerAdd(null, offp, "demonic.unrelenting");
-                return applyEffect(p, PotionEffectType.DAMAGE_RESISTANCE);
             case FLAWLESS:
-                getPerms().playerAdd(null, offp, "demonic.flawless");
-                return applyEffect(p, PotionEffectType.DAMAGE_RESISTANCE);
             case SUPREME:
-                getPerms().playerAdd(null, offp, "demonic.supreme");
-                return applyEffect(p, PotionEffectType.DAMAGE_RESISTANCE);
             case UNBREAKABLE:
-                getPerms().playerAdd(null, offp, "demonic.unbreakable");
-                return applyEffect(p, PotionEffectType.DAMAGE_RESISTANCE);
             case SENSE:
-                getPerms().playerAdd(null, offp, "demonic.sense");
-                return applyEffect(p, PotionEffectType.DAMAGE_RESISTANCE);
+                return -100;
             default:
                 return -2;
         }

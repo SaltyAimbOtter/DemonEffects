@@ -10,9 +10,7 @@ import java.util.Collection;
 
 public class SimplePotionEffects {
 
-
-
-    public static int applyEffect(Player p, PotionEffectType effectType) {
+    public static int applyPotionEffect(Player p, PotionEffectType effectType) {
     return Bukkit.getScheduler().scheduleSyncRepeatingTask(DemonEffects.getPlugin(), () -> {
             Collection<PotionEffect> activeEffects = p.getActivePotionEffects();
             for (PotionEffect activeEffect : activeEffects) {
