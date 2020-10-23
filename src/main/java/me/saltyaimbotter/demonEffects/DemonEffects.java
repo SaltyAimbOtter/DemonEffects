@@ -30,7 +30,7 @@ public final class DemonEffects extends JavaPlugin {
             getLogger().log(Level.SEVERE, "Vault was not found. No permissions could be set. Disabling...");
             getServer().getPluginManager().disablePlugin(this);
         }
-        this.getCommand("vamps").setExecutor(new Command());
+        this.getCommand("demonEffects").setExecutor(new Command());
         getServer().getPluginManager().registerEvents(new Listeners(), this);
     }
 

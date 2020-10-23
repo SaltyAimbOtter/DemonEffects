@@ -48,6 +48,31 @@ public class EffectsProfile {
         if (perms.has(p, IMMORTAL.getPermission())) {
             startEffect(IMMORTAL);
         }
+        if (perms.has(p, BANQUIET.getPermission())) {
+            startEffect(BANQUIET);
+        }
+        if (perms.has(p, PAIN.getPermission())) {
+            startEffect(PAIN);
+        }
+        if (perms.has(p, INDOMITABLE.getPermission())) {
+            startEffect(INDOMITABLE);
+        }
+        if (perms.has(p, UNRELENTING.getPermission())) {
+            startEffect(UNRELENTING);
+        }
+        if (perms.has(p, FLAWLESS.getPermission())) {
+            startEffect(FLAWLESS);
+        }
+        if (perms.has(p, SUPREME.getPermission())) {
+            startEffect(SUPREME);
+        }
+        if (perms.has(p, UNBREAKABLE.getPermission())) {
+            startEffect(UNBREAKABLE);
+        }
+        if (perms.has(p, SENSE.getPermission())) {
+            startEffect(SENSE);
+        }
+
     }
 
 

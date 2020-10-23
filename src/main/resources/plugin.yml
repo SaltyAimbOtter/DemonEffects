@@ -7,7 +7,7 @@ authors: [ SaltyAimbOtter ]
 description: A helper plugin for Arazorias that provides custom effects.
 
 commands:
-  vamps:
+  demonEffects:
     description: Internal usage.
 
 permissions:

@@ -6,7 +6,10 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.*;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.potion.PotionEffect;
@@ -65,10 +68,16 @@ public class Listeners implements Listener {
 
     @EventHandler
     public void onKill(EntityDeathEvent event) {
+        if (!(event.getEntity() instanceof Player)) {
+            return;
+        }
+
         Player p = event.getEntity().getKiller();
 
-        if (perms.has(p, BANQUIET.getPermission())) {
-            p.setFoodLevel(p.getFoodLevel() + 1);
+        if (p != null) {
+            if (perms.has(p, BANQUIET.getPermission())) {
+                p.setFoodLevel(p.getFoodLevel() + 1);
+            }
         }
     }
 
@@ -95,8 +104,8 @@ public class Listeners implements Listener {
         }
 
         if (perms.has(p, PAIN.getPermission())) {
-            p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 10,0));
-            p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 10,0));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 10, 0));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 10, 0));
         }
     }
 
@@ -111,21 +120,10 @@ public class Listeners implements Listener {
             p.damage(event.getDamage());
             event.setCancelled(true);
         }
-        if (event.getCause() == EntityDamageEvent.DamageCause.FALL) System.out.println("ok!");
-    }
-    //TODO Does not trigger?
-    @EventHandler
-    public void onFallDamage(EntityDamageByBlockEvent event) {
-        if (event.getCause() != EntityDamageEvent.DamageCause.FALL) {
-            return;
-        }
-        if (!(event.getEntity() instanceof Player)) {
-            return;
-        }
-        Player p = (Player) event.getEntity();
-        if (perms.has(p, FLAWLESS.getPermission())) {
-            event.setCancelled(true);
+        if (event.getCause() == EntityDamageEvent.DamageCause.FALL) {
+            if (perms.has(p, FLAWLESS.getPermission())) {
+                event.setCancelled(true);
+            }
         }
     }
-
 }
