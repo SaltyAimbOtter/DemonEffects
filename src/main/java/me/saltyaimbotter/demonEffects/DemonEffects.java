@@ -26,12 +26,12 @@ public final class DemonEffects extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
-        this.getCommand("vamps").setExecutor(new Command());
-        getServer().getPluginManager().registerEvents(new Listeners(), this);
         if (!setupPermissions()) {
             getLogger().log(Level.SEVERE, "Vault was not found. No permissions could be set. Disabling...");
             getServer().getPluginManager().disablePlugin(this);
         }
+        this.getCommand("vamps").setExecutor(new Command());
+        getServer().getPluginManager().registerEvents(new Listeners(), this);
     }
 
     @Override
@@ -63,6 +63,9 @@ public final class DemonEffects extends JavaPlugin {
 
     public void addEffectsProfile(UUID uuid, EffectsProfile profile) {
         this.playerEffectProfiles.put(uuid, profile);
+    }
 
+    public void removeEffectsProfile(UUID uuid) {
+        this.playerEffectProfiles.remove(uuid);
     }
 }

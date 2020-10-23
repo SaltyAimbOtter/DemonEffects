@@ -1,16 +1,22 @@
 package me.saltyaimbotter.demonEffects;
 
 import net.milkbowl.vault.permission.Permission;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
-import static me.saltyaimbotter.demonEffects.effects.Effects.EFFECT.BANQUIET;
+import static me.saltyaimbotter.demonEffects.effects.Effects.EFFECT.*;
 
 public class Listeners implements Listener {
 
@@ -31,19 +37,95 @@ public class Listeners implements Listener {
     }
 
     @EventHandler
+    public void onLogout(PlayerQuitEvent event) {
+        DemonEffects instance = DemonEffects.getInstance();
+        EffectsProfile profile = instance.getProfile(event.getPlayer().getUniqueId());
+        profile.cancelAllEffects();
+        instance.removeEffectsProfile(event.getPlayer().getUniqueId());
+    }
+
+    @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         UUID uuid = event.getPlayer().getUniqueId();
         instance.addEffectsProfile(uuid, new EffectsProfile(event.getPlayer()));
+
+        //Sense Skill
+        List<Entity> nearbyPlayers = event.getPlayer().getNearbyEntities(50, 50, 50)
+                .parallelStream().filter(e -> e instanceof Player).collect(Collectors.toList());
+        if (!nearbyPlayers.isEmpty()) {
+            String perm = SENSE.getPermission();
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                if (perms.has(p, perm)) {
+                    if (p == event.getPlayer()) return;
+                    p.sendMessage("§5You sense a presence nearby.");
+                }
+            }
+        }
     }
 
     @EventHandler
     public void onKill(EntityDeathEvent event) {
-         Player p = event.getEntity().getKiller();
-         if (perms.has(p, BANQUIET.getPermission())) {
+        Player p = event.getEntity().getKiller();
 
-         }
-
-
-
+        if (perms.has(p, BANQUIET.getPermission())) {
+            p.setFoodLevel(p.getFoodLevel() + 1);
+        }
     }
+
+    @EventHandler
+    public void onEntityDamage(EntityDamageByEntityEvent event) {
+        if (!(event.getEntity() instanceof Player)) {
+            return;
+        }
+
+        Player p = (Player) event.getEntity();
+        if (perms.has(p, UNBREAKABLE.getPermission())) {
+            event.setDamage(event.getDamage() - 1);
+        }
+
+        if (perms.has(p, SUPREME.getPermission())) {
+            event.setDamage(event.getDamage() * 0.8);
+        }
+
+        if (event.getDamager() instanceof Player) {
+            Player damager = (Player) event.getDamager();
+            if (perms.has(damager, INDOMITABLE.getPermission())) {
+                event.setDamage(event.getDamage() * 1.2);
+            }
+        }
+
+        if (perms.has(p, PAIN.getPermission())) {
+            p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 10,0));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 10,0));
+        }
+    }
+
+    @EventHandler
+    public void onDamage(EntityDamageEvent event) {
+        if (!(event.getEntity() instanceof Player)) {
+            return;
+        }
+
+        Player p = (Player) event.getEntity();
+        if (perms.has(p, UNRELENTING.getPermission())) {
+            p.damage(event.getDamage());
+            event.setCancelled(true);
+        }
+        if (event.getCause() == EntityDamageEvent.DamageCause.FALL) System.out.println("ok!");
+    }
+    //TODO Does not trigger?
+    @EventHandler
+    public void onFallDamage(EntityDamageByBlockEvent event) {
+        if (event.getCause() != EntityDamageEvent.DamageCause.FALL) {
+            return;
+        }
+        if (!(event.getEntity() instanceof Player)) {
+            return;
+        }
+        Player p = (Player) event.getEntity();
+        if (perms.has(p, FLAWLESS.getPermission())) {
+            event.setCancelled(true);
+        }
+    }
+
 }
