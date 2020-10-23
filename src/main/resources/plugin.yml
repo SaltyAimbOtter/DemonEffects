@@ -1,7 +1,7 @@
 name: VampireSim
 version: ${project.version}
-main: me.saltyaimbotter.vampiresim.VampireSim
-prefix: VampireSim
+main: me.saltyaimbotter.demonEffects.DemonEffects
+prefix: DemonEffects
 depend: [ Vault ]
 authors: [ SaltyAimbOtter ]
 description: A helper plugin for Arazorias that provides custom effects.

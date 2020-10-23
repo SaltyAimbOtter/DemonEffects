@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.saltyaimbotter</groupId>
-    <artifactId>vampireSim</artifactId>
+    <artifactId>DemonEffects</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>VampireSim</name>
+    <name>DemonEffects</name>
 
     <description>A helper plugin for Arazorias that provides custom effects.</description>
     <properties>

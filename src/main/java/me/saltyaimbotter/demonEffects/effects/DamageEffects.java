@@ -1,4 +1,4 @@
-package me.saltyaimbotter.vampiresim.effects;
+package me.saltyaimbotter.demonEffects.effects;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

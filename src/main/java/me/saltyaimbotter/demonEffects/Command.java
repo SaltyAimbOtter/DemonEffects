@@ -1,10 +1,11 @@
-package me.saltyaimbotter.vampiresim;
+package me.saltyaimbotter.demonEffects;
 
-import me.saltyaimbotter.vampiresim.effects.Effects;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import static me.saltyaimbotter.demonEffects.effects.Effects.EFFECT;
 
 public class Command implements CommandExecutor {
 
@@ -20,13 +21,19 @@ public class Command implements CommandExecutor {
 
         Player p = Bukkit.getServer().getPlayer(args[0]);
         if (p == null) {
-            sender.sendMessage("Player " + args[0] + "does not exist.");
+            sender.sendMessage("Player " + args[0] + "does not exist. Contact the admins.");
             return true;
         }
-
-        Effects.EFFECT effect = Effects.EFFECT.valueOf(args[1]);
-
-
+        EFFECT effect = null;
+        try {
+            effect = EFFECT.valueOf(args[1]);
+        } catch (IllegalArgumentException e) {
+            sender.sendMessage("This is not a valid effect. Contact the admins.");
+            return true;
+        }
+        DemonEffects instance = DemonEffects.getInstance();
+        instance.getProfile(p.getUniqueId()).startEffect(effect);
+        return true;
 
     }
 }
