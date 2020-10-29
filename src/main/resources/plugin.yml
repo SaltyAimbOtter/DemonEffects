@@ -1,4 +1,4 @@
-name: VampireSim
+name: DemonEffects
 version: ${project.version}
 main: me.saltyaimbotter.demonEffects.DemonEffects
 prefix: DemonEffects
@@ -21,7 +21,7 @@ permissions:
     default: false
   demonic.immortal:
     default: false
-  demonic.banquiet:
+  demonic.banquet:
     default: false
   demonic.pain:
     default: false

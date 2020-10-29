@@ -10,16 +10,16 @@ public class Effects {
     public static int applyEffects(Player p, EFFECT effect) {
         switch (effect) {
             case REGEN:
-                return applyPotionEffect(p, PotionEffectType.REGENERATION);
+                return applyPotionEffect(p, PotionEffectType.REGENERATION,0);
             case VIOLENCE:
-                return applyPotionEffect(p, PotionEffectType.SPEED);
+                return applyPotionEffect(p, PotionEffectType.SPEED,1);
             case VISION:
-                return applyPotionEffect(p, PotionEffectType.NIGHT_VISION);
+                return applyPotionEffect(p, PotionEffectType.NIGHT_VISION,0);
             case WRAITH:
-                return applyPotionEffect(p, PotionEffectType.INVISIBILITY);
+                return applyPotionEffect(p, PotionEffectType.INVISIBILITY,0);
             case IMMORTAL:
-                return applyPotionEffect(p, PotionEffectType.DAMAGE_RESISTANCE);
-            case BANQUIET:
+                return applyPotionEffect(p, PotionEffectType.DAMAGE_RESISTANCE,0);
+            case BANQUET:
             case PAIN:
             case INDOMITABLE:
             case UNRELENTING:
@@ -44,7 +44,7 @@ public class Effects {
         IMMORTAL("demonic.immortal"),
 
         //Health / Damaging Effects
-        BANQUIET("demonic.banquiet"),
+        BANQUET("demonic.banquet"),
         PAIN("demonic.pain"),
         INDOMITABLE("demonic.indomitable"),
         UNRELENTING("demonic.unrelenting"),

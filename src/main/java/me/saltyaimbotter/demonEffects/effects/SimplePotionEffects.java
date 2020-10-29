@@ -10,8 +10,8 @@ import java.util.Collection;
 
 public class SimplePotionEffects {
 
-    public static int applyPotionEffect(Player p, PotionEffectType effectType) {
-    return Bukkit.getScheduler().scheduleSyncRepeatingTask(DemonEffects.getPlugin(), () -> {
+    public static int applyPotionEffect(Player p, PotionEffectType effectType, int amplifier) {
+        return Bukkit.getScheduler().scheduleSyncRepeatingTask(DemonEffects.getPlugin(), () -> {
             Collection<PotionEffect> activeEffects = p.getActivePotionEffects();
             for (PotionEffect activeEffect : activeEffects) {
                 if (activeEffect.getType().equals(effectType)) {
@@ -20,7 +20,7 @@ public class SimplePotionEffects {
                     }
                 }
             }
-            p.addPotionEffect(new PotionEffect(effectType,Integer.MAX_VALUE,0));
-        },0,100);
+            p.addPotionEffect(new PotionEffect(effectType, Integer.MAX_VALUE, amplifier));
+        }, 0, 100);
     }
 }

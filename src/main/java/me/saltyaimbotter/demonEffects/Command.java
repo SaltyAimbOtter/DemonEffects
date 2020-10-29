@@ -26,7 +26,7 @@ public class Command implements CommandExecutor {
         }
         EFFECT effect = null;
         try {
-            effect = EFFECT.valueOf(args[1]);
+            effect = EFFECT.valueOf(args[1].toUpperCase());
         } catch (IllegalArgumentException e) {
             sender.sendMessage("This is not a valid effect. Contact the admins.");
             return true;

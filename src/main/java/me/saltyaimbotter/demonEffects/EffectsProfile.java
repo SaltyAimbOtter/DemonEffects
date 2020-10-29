@@ -48,8 +48,8 @@ public class EffectsProfile {
         if (perms.has(p, IMMORTAL.getPermission())) {
             startEffect(IMMORTAL);
         }
-        if (perms.has(p, BANQUIET.getPermission())) {
-            startEffect(BANQUIET);
+        if (perms.has(p, BANQUET.getPermission())) {
+            startEffect(BANQUET);
         }
         if (perms.has(p, PAIN.getPermission())) {
             startEffect(PAIN);
@@ -72,7 +72,6 @@ public class EffectsProfile {
         if (perms.has(p, SENSE.getPermission())) {
             startEffect(SENSE);
         }
-
     }
 
 
