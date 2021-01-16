@@ -4,8 +4,10 @@ import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 
 import static me.saltyaimbotter.demonEffects.DemonEffects.getPerms;
@@ -88,9 +90,13 @@ public class EffectsProfile {
     }
 
     public void cancelAllEffects() {
-        for (Integer integer : taskList.values()) {
-            if (integer != null) {
-                Bukkit.getScheduler().cancelTask(integer);
+        for (Map.Entry<EFFECT,Integer> entry : taskList.entrySet()) {
+            if (entry.getValue() != null && entry.getValue() > -1) {
+                Bukkit.getScheduler().cancelTask(entry.getValue());
+            }
+            PotionEffectType effectType = entry.getKey().getEffectType();
+            if (effectType != null) {
+                p.removePotionEffect(effectType);
             }
         }
         taskList.clear();

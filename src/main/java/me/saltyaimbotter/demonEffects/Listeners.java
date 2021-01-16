@@ -34,7 +34,6 @@ public class Listeners implements Listener {
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
-        DemonEffects instance = DemonEffects.getInstance();
         EffectsProfile profile = instance.getProfile(event.getEntity().getUniqueId());
         profile.removePerms();
         profile.cancelAllEffects();
@@ -42,7 +41,6 @@ public class Listeners implements Listener {
 
     @EventHandler
     public void onLogout(PlayerQuitEvent event) {
-        DemonEffects instance = DemonEffects.getInstance();
         EffectsProfile profile = instance.getProfile(event.getPlayer().getUniqueId());
         profile.cancelAllEffects();
         instance.removeEffectsProfile(event.getPlayer().getUniqueId());

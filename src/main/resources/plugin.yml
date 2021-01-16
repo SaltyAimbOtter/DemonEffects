@@ -11,29 +11,27 @@ commands:
     description: Internal usage.
 
 permissions:
-  demonic.regen:
+  demonic.admin:
     default: false
-  demonic.violence:
+  demonic.sense:
     default: false
-  demonic.vision:
+  demonic.unbreakable:
     default: false
-  demonic.wraith:
+  demonic.uncontrollable:
     default: false
-  demonic.immortal:
+  demonic.undeniable:
+    default: false
+  demonic.unstoppable:
+    default: false
+  demonic.bloodletting:
+    default: false
+  demonic.desires:
     default: false
   demonic.banquet:
     default: false
-  demonic.pain:
+  demonic.soulless:
     default: false
-  demonic.indomitable:
+  demonic.adrenaline:
     default: false
-  demonic.unrelenting:
-    default: false
-  demonic.flawless:
-    default: false
-  demonic.supreme:
-    default: false
-  demonic.unbrekable:
-    default: false
-  demonic.sense:
+  demonic.phantom:
     default: false
