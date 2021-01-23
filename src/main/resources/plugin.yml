@@ -1,8 +1,9 @@
-name: DemonEffects
+name: DemonSkills
 version: ${project.version}
-main: me.saltyaimbotter.demonEffects.DemonEffects
-prefix: DemonEffects
-depend: [ Vault ]
+api-version: 1.16
+main: me.saltyaimbotter.demonSkills.DemonSkills
+prefix: DemonSkills
+depend: [ Vault]
 authors: [ SaltyAimbOtter ]
 description: A helper plugin for Arazorias that provides custom effects.
 

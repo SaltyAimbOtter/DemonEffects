@@ -1,5 +1,7 @@
-package me.saltyaimbotter.demonEffects;
+package me.saltyaimbotter.demonSkills;
 
+import lombok.Getter;
+import me.saltyaimbotter.demonSkills.skills.SkillListeners;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -9,29 +11,32 @@ import java.util.HashMap;
 import java.util.UUID;
 import java.util.logging.Level;
 
-public final class DemonEffects extends JavaPlugin {
+public final class DemonSkills extends JavaPlugin {
 
     private static Permission perms = null;
     public static Plugin plugin = null;
 
-    private static DemonEffects instance;
+    private static DemonSkills instance;
 
-    protected HashMap<UUID, EffectsProfile> playerEffectProfiles = new HashMap<>();
+    @Getter
+    protected HashMap<UUID, SkillProfile> playerEffectProfiles = new HashMap<>();
 
 
-    public DemonEffects() {
+    public DemonSkills()
+    {
         instance = this;
+        plugin = this;
     }
 
     @Override
     public void onEnable() {
-        plugin = this;
         if (!setupPermissions()) {
             getLogger().log(Level.SEVERE, "Vault was not found. No permissions could be set. Disabling...");
             getServer().getPluginManager().disablePlugin(this);
         }
-        this.getCommand("demonEffects").setExecutor(new Command());
-        getServer().getPluginManager().registerEvents(new Listeners(), this);
+
+        getServer().getPluginManager().registerEvents(new SkillListeners(), this);
+        getServer().getPluginManager().registerEvents(new ProfileListeners(), this);
     }
 
     @Override
@@ -43,7 +48,7 @@ public final class DemonEffects extends JavaPlugin {
         return plugin;
     }
 
-    public static DemonEffects getInstance() {
+    public static DemonSkills getInstance() {
         return instance;
     }
 
@@ -55,17 +60,5 @@ public final class DemonEffects extends JavaPlugin {
         RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
         perms = rsp.getProvider();
         return perms != null;
-    }
-
-    public EffectsProfile getProfile(UUID uuid) {
-        return playerEffectProfiles.get(uuid);
-    }
-
-    public void addEffectsProfile(UUID uuid, EffectsProfile profile) {
-        this.playerEffectProfiles.put(uuid, profile);
-    }
-
-    public void removeEffectsProfile(UUID uuid) {
-        this.playerEffectProfiles.remove(uuid);
     }
 }

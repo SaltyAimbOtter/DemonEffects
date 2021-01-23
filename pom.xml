@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.saltyaimbotter</groupId>
-    <artifactId>DemonEffects</artifactId>
+    <artifactId>DemonSkills</artifactId>
     <version>2.0</version>
     <packaging>jar</packaging>
 
-    <name>DemonEffects</name>
+    <name>DemonSkills</name>
 
-    <description>A helper plugin for Arazorias that provides custom effects.</description>
+    <description>A helper plugin for Arazorias that provides custom skills.</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -44,6 +44,25 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.coderplus.maven.plugins</groupId>
+                <artifactId>copy-rename-maven-plugin</artifactId>
+                <version>1.0</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <sourceFile>${project.build.directory}/${project.artifactId}-${project.version}-shaded.jar
+                            </sourceFile>
+                            <destinationFile>D:\DEV SERVER\PAPER\DemonSkills\plugins\DemonEffects.jar</destinationFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <resources>
             <resource>
@@ -69,6 +88,7 @@
     </repositories>
 
     <dependencies>
+        <!-- >Minecraft Dependencies <!-->
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
@@ -80,6 +100,23 @@
             <artifactId>VaultAPI</artifactId>
             <version>1.7</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.ElgarL</groupId>
+            <artifactId>groupmanager</artifactId>
+            <version>2.9</version>
+        </dependency>
+        <!-- >Code Dependencies <!-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.11</version>
         </dependency>
     </dependencies>
 </project>
