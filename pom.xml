@@ -56,9 +56,9 @@
                             <goal>copy</goal>
                         </goals>
                         <configuration>
-                            <sourceFile>${project.build.directory}/${project.artifactId}-${project.version}-shaded.jar
+                            <sourceFile>${project.build.directory}/${project.artifactId}-${project.version}.jar
                             </sourceFile>
-                            <destinationFile>D:\DEV SERVER\PAPER\DemonSkills\plugins\DemonEffects.jar</destinationFile>
+                            <destinationFile>D:\DEV SERVER\PAPER\DemonSkills\plugins\${artifactId}-${version}.jar</destinationFile>
                         </configuration>
                     </execution>
                 </executions>
@@ -102,9 +102,10 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.ElgarL</groupId>
-            <artifactId>groupmanager</artifactId>
-            <version>2.9</version>
+            <groupId>net.luckperms</groupId>
+            <artifactId>api</artifactId>
+            <version>5.2</version>
+            <scope>provided</scope>
         </dependency>
         <!-- >Code Dependencies <!-->
         <dependency>

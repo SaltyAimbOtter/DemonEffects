@@ -13,13 +13,17 @@ import java.util.logging.Level;
 
 public final class DemonSkills extends JavaPlugin {
 
+    @Getter
     private static Permission perms = null;
-    public static Plugin plugin = null;
 
+    @Getter
+    private static Plugin plugin = null;
+
+    @Getter
     private static DemonSkills instance;
 
     @Getter
-    protected HashMap<UUID, SkillProfile> playerEffectProfiles = new HashMap<>();
+    private final HashMap<UUID, PotionSkillProfile> playerEffectProfiles = new HashMap<>();
 
 
     public DemonSkills()
@@ -42,18 +46,6 @@ public final class DemonSkills extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-    }
-
-    public static Plugin getPlugin() {
-        return plugin;
-    }
-
-    public static DemonSkills getInstance() {
-        return instance;
-    }
-
-    public static Permission getPerms() {
-        return perms;
     }
 
     private boolean setupPermissions() {

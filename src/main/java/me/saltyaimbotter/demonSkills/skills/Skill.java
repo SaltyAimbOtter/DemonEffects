@@ -12,17 +12,18 @@ public class Skill {
 
     public enum LISTENER_SKILL {
         //Damage Effects | EntityDamageByEntityEvent -> Player
+        UNDENIABLE(), // 1.5 extra true damage for melee attacks
+
+        //Damage Effects | EntityDamageEvent -> Player
         UNCONTROLLABLE(), //No explosion and fire damage
         UNSTOPPABLE(), //No knockback,
         DESIRES(), //on damage: +0.5 hearts 1sec resistance [2sec cooldown]
-
-        //Damage Effects | EntityDamageByEntityEvent -> !Player
-        UNDENIABLE(), // 1.5 extra true damage for melee attacks
 
         //DeathEffects | EntityDeathEvent
         BANQUET(), //+0.5 hunger upon any kill
 
         //AI Effects
+        //TODO
         SOULLESS(), //Zombies and skeletons do not aggro onto the player unless attacked
 
         //Special Effects
@@ -47,12 +48,12 @@ public class Skill {
         PHANTOM(new ImmutablePair<>(INVISIBILITY, 1), new ImmutablePair<>(NIGHT_VISION, 1));
 
         @Getter
-        ImmutablePair<PotionEffectType, Integer>[] skillData;
+        ImmutablePair<PotionEffectType, Integer>[] potionData;
 
 
         @SafeVarargs
-        POTION_SKILL(ImmutablePair<PotionEffectType, Integer>... skillData) {
-            this.skillData = skillData;
+        POTION_SKILL(ImmutablePair<PotionEffectType, Integer>... potionData) {
+            this.potionData = potionData;
         }
 
         /**
